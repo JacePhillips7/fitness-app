@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
 import { View, Text, StyleSheet } from "react-native";
-import { auth } from "../firebase.config";
+import { auth } from "../../firebase.config";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { useState, useEffect } from "react";
 export default function DashboardScreen() {
