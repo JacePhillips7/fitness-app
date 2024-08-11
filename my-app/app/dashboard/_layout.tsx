@@ -3,7 +3,7 @@ import React from "react";
 
 const Layout = () => {
   return (
-    <Stack>
+    <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" options={{ title: "Home" }} />
     </Stack>
   );
