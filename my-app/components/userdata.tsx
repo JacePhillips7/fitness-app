@@ -1,3 +1,4 @@
+import { View, Button, Text } from "react-native";
 import { storage } from "../firebase.config";
 import { auth } from "../firebase.config";
 import { collection, getDocs, addDoc, doc, getDoc, updateDoc } from "firebase/firestore";
@@ -27,18 +28,18 @@ export default function UserData() {
     });
   }, []);
   return (
-    <div>
-      <h1>UserData</h1>
+    <View>
+      <Text>UserData</Text>
       {/* dump the data as json string */}
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <Text>{JSON.stringify(data, null, 2)}</Text>
       {/* <ul>
-        {data.map((user) => (
-          <li key={user.id}>{user.name}</li>
-        ))}
-      </ul> */}
+            {data.map((user) => (
+                <li key={user.id}>{user.name}</li>
+            ))}
+        </ul> */}
 
-      <button
-        onClick={async () => {
+      <Button
+        onPress={async () => {
           //   await addDoc(collection(storage, "userdata"), {
           //     name: "New User",
           //     id: data.length + 1,
@@ -49,9 +50,8 @@ export default function UserData() {
           });
           await fetchData(user.uid);
         }}
-      >
-        Add some data
-      </button>
-    </div>
+        title="Add some data"
+      />
+    </View>
   );
 }
