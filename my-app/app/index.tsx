@@ -1,12 +1,20 @@
 import { Link, router } from "expo-router";
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { auth } from "../firebase.config";
 export default function HomeScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        router.navigate("dashboard");
+      }
+    });
+  });
 
   const handleLogin = async () => {
     //set the error to an empty string
