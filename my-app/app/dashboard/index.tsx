@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { auth } from "../../firebase.config";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { useState, useEffect } from "react";
+import Data from "../../components/userdata";
 export default function DashboardScreen() {
   const [user, setUser] = useState<User | null>(null);
 
@@ -19,6 +20,7 @@ export default function DashboardScreen() {
       <Text>Dashboard</Text>
       <Text>Welcome {user?.displayName ?? user?.email}</Text>
       <Link href="/">Login</Link>
+      <Data />
     </View>
   );
 }
