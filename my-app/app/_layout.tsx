@@ -4,8 +4,9 @@ import React from "react";
 const Layout = () => {
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="index" options={{ title: "Login" }} />
-      <Stack.Screen name="dashboard" options={{ title: "User Dashboard" }} />
+      <Stack.Screen name="login" options={{ title: "Login" }} />
+      <Stack.Screen name="home" options={{ title: "Home" }} />
+      <Stack.Screen name="index" options={{ title: "" }} />
     </Stack>
   );
 };

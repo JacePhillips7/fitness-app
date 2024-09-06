@@ -11,7 +11,7 @@ export default function HomeScreen() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        router.navigate("dashboard");
+        router.navigate("home");
       }
     });
   });
@@ -25,7 +25,7 @@ export default function HomeScreen() {
       await auth.updateCurrentUser(user);
       //navigate to the dashboard
       auth.onAuthStateChanged((user) => {
-        router.navigate("dashboard");
+        router.navigate("home");
       });
     } catch (error: any) {
       const errorMessage = error.message;

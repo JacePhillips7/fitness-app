@@ -10,7 +10,6 @@ export default function UserData() {
   const [user, setUser] = useState<any | null>(null);
   const fetchData = async (userid: string) => {
     try {
-      console.log("fetching data", userid);
       const userDocRef = doc(storage, "userdata", userid);
       const querySnapshot = await getDoc(userDocRef);
       if (querySnapshot.exists()) {
@@ -22,7 +21,6 @@ export default function UserData() {
   };
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      console.log("user", user);
       if (!user) {
         router.push("");
       } else {
