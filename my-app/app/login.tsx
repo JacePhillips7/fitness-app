@@ -38,7 +38,7 @@ export default function login() {
   const [error, setError] = useState("");
   return (
     <View style={styles.container}>
-      <Text>Home</Text>
+      <Text>Login</Text>
       <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} />
 
       <TextInput style={styles.input} placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
