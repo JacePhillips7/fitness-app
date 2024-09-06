@@ -1,4 +1,4 @@
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { View, Text, StyleSheet } from "react-native";
 import { auth } from "../firebase.config";
 import { onAuthStateChanged, User } from "firebase/auth";
@@ -9,6 +9,9 @@ export default function DashboardScreen() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (!currentUser) {
+        router.push("login");
+      }
       return setUser(currentUser);
     });
 
