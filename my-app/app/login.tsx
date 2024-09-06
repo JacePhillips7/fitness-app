@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { router } from "expo-router";
 import { auth } from "../firebase.config";
-import { View, TextInput, Button, StyleSheet, Text } from "react-native";
+import { View, TextInput, StyleSheet, Text } from "react-native";
+import { Button } from "react-native-paper";
 export default function login() {
   const handleLogin = async () => {
     //set the error to an empty string
@@ -42,8 +43,12 @@ export default function login() {
 
       <TextInput style={styles.input} placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
 
-      <Button title="Login" onPress={handleLogin} />
-      <Button title="Sign Up" onPress={handleSignUp} />
+      <Button mode="contained" icon="login" onPress={handleLogin}>
+        Login
+      </Button>
+      <Button mode="contained" onPress={handleSignUp}>
+        Sign Up
+      </Button>
 
       {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>

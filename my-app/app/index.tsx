@@ -1,12 +1,8 @@
-import { Link, router } from "expo-router";
-import { View, Text, StyleSheet, Button, TextInput } from "react-native";
-import { useEffect, useState } from "react";
+import { router } from "expo-router";
+import React, { useEffect } from "react";
 import { auth } from "../firebase.config";
+import { View } from "react-native";
 export default function IndexScreen() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
