@@ -6,6 +6,9 @@ class MyAuthService {
   signOut() {
     this.auth.signOut();
   }
+  getUser() {
+    return this.auth.currentUser;
+  }
 }
 const AuthService = new MyAuthService(auth);
-export default AuthService
+export default AuthService;
