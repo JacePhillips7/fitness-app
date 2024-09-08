@@ -1,29 +1,10 @@
-import { Link, router } from "expo-router";
+import { Link } from "expo-router";
 import { View, Text, StyleSheet } from "react-native";
-import { auth } from "../../firebase.config";
-import { onAuthStateChanged, User } from "firebase/auth";
-import { useState, useEffect } from "react";
-import Data from "../../components/userdata";
+import Timer from "../../components/timer";
 export default function HomeTab() {
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (!currentUser) {
-        router.push("login");
-      }
-      return setUser(currentUser);
-    });
-
-    // Cleanup subscription on unmount
-    return () => unsubscribe();
-  }, []);
   return (
     <View style={styles.container}>
-      <Text>Dashboard</Text>
-      <Text>Welcome {user?.displayName ?? user?.email}</Text>
-      <Link href="/">Login</Link>
-      <Data />
+      <Timer />
     </View>
   );
 }
