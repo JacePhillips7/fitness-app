@@ -36,6 +36,8 @@ export default function Timer({}: Props) {
       <Text>{formatTime(time)}</Text>
       <View style={styles.timerButtons}>
         <Button title="Start" onPress={startStopWatch} />
+      </View>
+      <View style={styles.timerButtons}>
         <Button title="Stop" onPress={stopStopWatch} />
         <Button title="Reset" onPress={resetStopWatch} />
       </View>
@@ -46,5 +48,6 @@ const styles = StyleSheet.create({
   timerButtons: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "center",
   },
 });
