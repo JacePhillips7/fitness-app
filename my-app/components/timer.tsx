@@ -25,15 +25,23 @@ export default function Timer() {
     setTime(0);
   };
   const formatTime = (time: number) => {
+    function formatNum(num: number, del: string = ":"): string {
+      if (num < 0.1) return "";
+      if (num < 10) {
+        return `0${num}${del}`;
+      }
+      return `${num}${del}`;
+    }
+
     const hours = Math.floor(time / 100 / 60 / 60);
     const minutes = Math.floor((time / 100 / 60) % 60);
     const seconds = Math.floor((time / 100) % 60);
     const centiseconds = time % 100;
-    return `${hours ? hours + ":" : ""}${minutes ? minutes + ":" : ""}${seconds}:${centiseconds}`;
+    return `${formatNum(hours)}${formatNum(minutes)}${formatNum(seconds) || "00:"}${formatNum(centiseconds, "") || "00"}`;
   };
   return (
     <View style={styles.container}>
-      <Text>{formatTime(time)}</Text>
+      <Text style={styles.stopwatch}>{formatTime(time)}</Text>
       <View style={styles.timerButtons}>
         {!isRunning ? (
           <Button
@@ -64,6 +72,10 @@ export default function Timer() {
   );
 }
 const styles = StyleSheet.create({
+  stopwatch: {
+    fontFamily: "Orbitron",
+    fontSize: 36,
+  },
   timerButtons: {
     display: "flex",
     flexDirection: "row",
