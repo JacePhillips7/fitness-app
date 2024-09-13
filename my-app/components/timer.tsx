@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
   stopwatch: {
     fontFamily: "Orbitron",
     fontSize: 36,
+    userSelect: "none",
   },
   timerButtons: {
     display: "flex",
