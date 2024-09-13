@@ -3,7 +3,7 @@ import { Tabs } from "expo-router";
 import { User } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { auth } from "../../firebase.config";
-import { Avatar } from "react-native-paper";
+import { Avatar, Icon } from "react-native-paper";
 
 export default function TabLayout() {
   const [user, setUser] = useState<User | null>(auth.currentUser);
@@ -27,18 +27,44 @@ export default function TabLayout() {
     }
   };
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: "red", headerShown: false, tabBarShowLabel: false }}>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "red",
+        headerShown: false,
+        tabBarShowLabel: false,
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <Icon size={28} source="home" color={color} />
+          ),
         }}
       />
       <Tabs.Screen
+        name="social"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon source="account-multiple" size={28} color={color} />
+          ),
+        }}
+        />
+        <Tabs.Screen
+          name="history"
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Icon source="weight-lifter" size={28} color={color} />
+            ),
+          }}
+          />
+      <Tabs.Screen
         name="settings"
         options={{
-          tabBarIcon: ({ color }) => <Avatar.Text size={28} label={initials ?? ""} color={color} />,
+          tabBarIcon: ({ color }) => (
+             <Icon size={28} source="account-circle" color={color} />
+          ),
         }}
       />
     </Tabs>
