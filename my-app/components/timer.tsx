@@ -14,9 +14,16 @@ export default function Timer({}: Props) {
     intervalRef.current = setInterval(() => {
       setTime(Math.floor((Date.now() - startTimeRef.current!) / 10));
     }, 1);
+    setIsRunning(true);
   };
-  const stopStopWatch = () => {};
-  const resetStopWatch = () => {};
+  const stopStopWatch = () => {
+    setIsRunning(false);
+    if (intervalRef.current) clearInterval(intervalRef.current);
+  };
+  const resetStopWatch = () => {
+    stopStopWatch();
+    setTime(0);
+  };
   const formatTime = (time: number) => {
     const hours = Math.floor(time / 100 / 60 / 60);
     const minutes = Math.floor((time / 100 / 60) % 60);
