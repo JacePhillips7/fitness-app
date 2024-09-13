@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
-const buttonColor = "#295F98";
+import { color } from "../theme/color_theme";
+const buttonColor = color.primary;
 export default function Timer() {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
