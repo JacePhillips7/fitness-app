@@ -1,9 +1,8 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
 import { User } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { auth } from "../../firebase.config";
-import { Avatar, Icon } from "react-native-paper";
+import { Icon } from "react-native-paper";
 
 export default function TabLayout() {
   const [user, setUser] = useState<User | null>(auth.currentUser);
@@ -50,20 +49,20 @@ export default function TabLayout() {
             <Icon source="account-multiple" size={28} color={color} />
           ),
         }}
-        />
-        <Tabs.Screen
-          name="history"
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Icon source="weight-lifter" size={28} color={color} />
-            ),
-          }}
-          />
+      />
+      <Tabs.Screen
+        name="history"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon source="weight-lifter" size={28} color={color} />
+          ),
+        }}
+      />
       <Tabs.Screen
         name="settings"
         options={{
           tabBarIcon: ({ color }) => (
-             <Icon size={28} source="account-circle" color={color} />
+            <Icon size={28} source="account-circle" color={color} />
           ),
         }}
       />
