@@ -25,15 +25,27 @@ const exampleWorkout = {
       reps: 10,
       complete: false,
     },
+    {
+      name: "Pushups",
+      sets: 3,
+      reps: 10,
+      complete: false,
+    },
+    {
+      name: "Pullups",
+      sets: 3,
+      reps: 10,
+      complete: false,
+    },
   ],
 };
 const Workout = () => {
   return (
     <View style={styles.container}>
       <Card style={styles.card}>
-        <Card.Content>
+        <Card.Content style={styles.card_content}>
           {exampleWorkout.routine.map((exercise, index) => (
-            <View key={index}>
+            <View key={index} style={styles.routine}>
               <Routine routine={exercise} />
             </View>
           ))}
@@ -49,10 +61,19 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     width: "100%",
-    justifyContent: "center",
-    alignContent: "center",
+    justifyContent: "flex-start",
+    alignContent: "flex-start",
   },
   card: {
     width: "100%",
+    overflow: "scroll",
+    height: "85%",
+  },
+  card_content: {
+    height: "90%",
+    overflow: "scroll",
+  },
+  routine: {
+    margin: 10,
   },
 });

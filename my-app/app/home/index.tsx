@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   bottom_half: { flex: 1, justifyContent: "flex-start", alignItems: "flex-start", width: "100%" },
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
   },
 });
