@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React, { SetStateAction, useState } from "react";
-import { Card, IconButton } from "react-native-paper";
-import { color } from "../../theme/color_theme";
+import { Card, IconButton, Text } from "react-native-paper";
 export interface routine {
   name: string;
   sets: number;
@@ -26,9 +25,9 @@ const Routine = ({ routine }: { routine: routine }) => {
       <Card>
         <Card.Title title={routine.name} right={() => <CheckButton complete={complete} toggleComplete={toggleComplete} />} />
         <Card.Content>
-          <Text>Sets: {routine.sets}</Text>
-          <Text>Reps: {routine.reps}</Text>
-          <Text>{complete ? "Complete" : "Incomplete"}</Text>
+          <Text variant="titleLarge">
+            {routine.sets} x {routine.reps}
+          </Text>
         </Card.Content>
       </Card>
     </View>
