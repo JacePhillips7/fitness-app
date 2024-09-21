@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Routine, { routine } from "./routine";
-import { Card } from "react-native-paper";
+import { Card, ProgressBar } from "react-native-paper";
+import { color } from "../../theme/color_theme";
 interface Workout {
   date: Date;
   stopwatch: string;
@@ -42,6 +43,7 @@ const exampleWorkout = {
 const Workout = () => {
   return (
     <View style={styles.container}>
+      {/* <ProgressBar progress={0.5} color={color.primary} /> */}
       <Card style={styles.card}>
         <Card.Content style={styles.card_content}>
           {exampleWorkout.routine.map((exercise, index) => (
