@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 import { Card, IconButton, Text } from "react-native-paper";
-export interface routine {
+export interface IRoutine {
   _id: string;
   name: string;
   sets: number;
@@ -28,7 +28,7 @@ const Routine = ({
   routine,
   update,
 }: {
-  routine: routine;
+  routine: IRoutine;
   update: Function;
 }) => {
   return (

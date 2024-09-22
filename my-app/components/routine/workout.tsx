@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
-import Routine, { routine } from "./routine";
+import Routine, { IRoutine } from "./routine";
 import { Card, ProgressBar } from "react-native-paper";
 import { color } from "../../theme/color_theme";
 interface Workout {
@@ -8,7 +8,7 @@ interface Workout {
   date: Date;
   stopwatch: string;
   complete: boolean;
-  routine: routine[];
+  routine: IRoutine[];
 }
 const toggleComplete = (id: string, data: Workout) => {
   const updatedRoutine = data.routine.map((exercise) => {
