@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import React, { SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import { Card, IconButton, Text } from "react-native-paper";
 export interface routine {
   _id: string;
