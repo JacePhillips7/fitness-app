@@ -3,14 +3,9 @@ import React, { useState } from "react";
 import Routine, { IRoutine } from "./routine";
 import { Card, ProgressBar } from "react-native-paper";
 import { color } from "../../theme/color_theme";
-interface Workout {
-  _id: string;
-  date: Date;
-  stopwatch: string;
-  complete: boolean;
-  routine: IRoutine[];
-}
-const toggleComplete = (id: string, data: Workout) => {
+import { IWorkout } from "../../services/repos/workoutRepo";
+
+const toggleComplete = (id: string, data: IWorkout) => {
   const updatedRoutine = data.routine.map((exercise) => {
     if (exercise._id === id) {
       return { ...exercise, complete: !exercise.complete };
@@ -19,14 +14,14 @@ const toggleComplete = (id: string, data: Workout) => {
   });
   return { ...data, routine: updatedRoutine };
 };
-const getProgress = (data: Workout) => {
+const getProgress = (data: IWorkout) => {
   let length = data.routine.length;
   let complete = data.routine.filter((r) => {
     return r.complete;
   }).length;
   return complete / length;
 };
-const Workout = ({ workout }: { workout: Workout }) => {
+const WorkoutComponent = ({ workout }: { workout: IWorkout }) => {
   const [data, setData] = useState(workout);
   const [progress, setProgress] = useState(getProgress(data));
   return (
@@ -54,7 +49,7 @@ const Workout = ({ workout }: { workout: Workout }) => {
   );
 };
 
-export default Workout;
+export default WorkoutComponent;
 
 const styles = StyleSheet.create({
   container: {

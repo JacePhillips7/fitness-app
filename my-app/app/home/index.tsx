@@ -1,8 +1,10 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import Timer from "../../components/timer";
-import Workout from "../../components/routine/workout";
-import UserDataService from "../../services/userdata.service";
-import { useEffect } from "react";
+import WorkoutComponent from "../../components/routine/workout";
+import { UserDataStore } from "../../services/userdata.service";
+import { useEffect, useState } from "react";
+import { auth } from "../../firebase.config";
+import { IWorkout } from "../../services/repos/workoutRepo";
 const exampleWorkout = {
   _id: "workoutid",
   date: new Date(),
@@ -40,14 +42,26 @@ const exampleWorkout = {
   ],
 };
 export default function HomeTab() {
-  useEffect(() => {});
+  const [workout, setWorkout] = useState<IWorkout>(exampleWorkout);
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      console.log(user);
+    });
+    // datastore.getWorkout().then((data) => {
+    //   setWorkout(data);
+    // });
+  });
   return (
     <View style={styles.container}>
       <View style={styles.top_half}>
         <Timer />
       </View>
       <View style={styles.bottom_half}>
-        <Workout workout={exampleWorkout} />
+        {workout ? (
+          <WorkoutComponent workout={workout} />
+        ) : (
+          <Text> No workout set</Text>
+        )}
       </View>
     </View>
   );
