@@ -5,6 +5,7 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import AuthService from "../services/auth.service";
 import { router } from "expo-router";
+import UserDataService from "../services/userdata.service";
 export default function UserData() {
   const [data, setData] = useState<any[]>([]);
   const [user, setUser] = useState<any | null>(null);
@@ -35,10 +36,7 @@ export default function UserData() {
       <Text>{JSON.stringify(data, null, 2)}</Text>
       <Button
         onPress={async () => {
-          const userDocRef = doc(storage, "userdata", user.uid);
-          await updateDoc(userDocRef, {
-            title: "Badass",
-          });
+          await UserDataService.setDoc(user.uid);
           await fetchData(user.uid);
         }}
         title="Add some data"

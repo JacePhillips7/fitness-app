@@ -31,7 +31,6 @@ const Routine = ({
   routine: routine;
   update: Function;
 }) => {
-  const [complete, toggleComplete] = useState(routine.complete);
   return (
     <View>
       <Card>

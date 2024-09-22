@@ -1,6 +1,8 @@
 import { View, StyleSheet } from "react-native";
 import Timer from "../../components/timer";
 import Workout from "../../components/routine/workout";
+import UserDataService from "../../services/userdata.service";
+import { useEffect } from "react";
 const exampleWorkout = {
   _id: "workoutid",
   date: new Date(),
@@ -38,6 +40,7 @@ const exampleWorkout = {
   ],
 };
 export default function HomeTab() {
+  useEffect(() => {});
   return (
     <View style={styles.container}>
       <View style={styles.top_half}>
@@ -56,7 +59,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
   },
-  bottom_half: { flex: 1, justifyContent: "flex-start", alignItems: "flex-start", width: "100%" },
+  bottom_half: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    width: "100%",
+  },
   container: {
     flex: 1,
     justifyContent: "flex-start",
