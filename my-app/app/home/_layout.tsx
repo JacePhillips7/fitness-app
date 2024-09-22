@@ -51,10 +51,18 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="history"
+        name="create"
         options={{
           tabBarIcon: ({ color }) => (
             <Icon source="weight-lifter" size={28} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="history"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon source="chart-areaspline" size={28} color={color} />
           ),
         }}
       />
