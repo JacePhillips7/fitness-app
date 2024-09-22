@@ -10,42 +10,6 @@ interface Workout {
   complete: boolean;
   routine: routine[];
 }
-const exampleWorkout = {
-  _id: "workoutid",
-  date: new Date(),
-  stopwatch: "00:00",
-  complete: false,
-  routine: [
-    {
-      _id: "id1",
-      name: "Pushups",
-      sets: 3,
-      reps: 10,
-      complete: false,
-    },
-    {
-      _id: "id2",
-      name: "Pullups",
-      sets: 3,
-      reps: 10,
-      complete: false,
-    },
-    {
-      _id: "id3",
-      name: "Pushups",
-      sets: 3,
-      reps: 10,
-      complete: false,
-    },
-    {
-      _id: "id4",
-      name: "Pullups",
-      sets: 3,
-      reps: 10,
-      complete: false,
-    },
-  ],
-};
 const toggleComplete = (id: string, data: Workout) => {
   console.log("updating");
   console.log(id, data);
@@ -58,12 +22,21 @@ const toggleComplete = (id: string, data: Workout) => {
   console.log(id, data);
   return { ...data, routine: updatedRoutine };
 };
-const Workout = () => {
-  const [data, setData] = useState(exampleWorkout);
+const getProgress = (data: Workout) => {
+  let length = data.routine.length;
+  let complete = data.routine.filter((r) => {
+    r.complete;
+  }).length;
+  console.log(complete / length);
+  return complete / length;
+};
+const Workout = ({ workout }: { workout: Workout }) => {
+  const [data, setData] = useState(workout);
+  const [progress, setProgress] = useState(getProgress(data));
   return (
     <View style={styles.container}>
       <View>
-        <ProgressBar progress={0.5} color={color.primary} />
+        <ProgressBar progress={progress} color={color.primary} />
       </View>
       <Card style={styles.card}>
         <Card.Content style={styles.card_content}>
@@ -72,8 +45,8 @@ const Workout = () => {
               <Routine
                 routine={exercise}
                 update={() => {
-                  console.log("settings state", data);
                   setData(toggleComplete(exercise._id, data));
+                  setProgress(getProgress(data));
                 }}
               />
             </View>
