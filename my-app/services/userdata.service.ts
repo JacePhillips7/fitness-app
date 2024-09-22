@@ -3,13 +3,12 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { storage, auth } from "../firebase.config";
 import { Auth } from "firebase/auth";
 import Workout from "../components/routine/workout";
-interface UserDataObject {
+interface IUserDataObject {
   _id: string;
-  workouts: Workout[];
+  currentWorkout?: Workout;
   settings: any;
 }
-const userDataTemplate: Omit<UserDataObject, "_id"> = {
-  workouts: [],
+const userDataTemplate: Omit<IUserDataObject, "_id"> = {
   settings: {},
 };
 const COLLECTION = "userdata";
@@ -19,16 +18,13 @@ class UserDataStore {
     private auth: Auth,
   ) {}
 
-  async setDoc(userid: string, userData?: UserDataObject) {
+  async setDoc(userid: string, userData?: IUserDataObject) {
     const userDocRef = doc(this.store, "userdata", userid);
     const query = await getDoc(userDocRef);
     if (!query.exists()) {
       await this.makeDefaultSettings(userid);
     }
     if (userData) await updateDoc(userDocRef, { ...userData });
-  }
-  getWorkouts() {
-    throw new Error("Not Implemented Yet");
   }
   private async makeDefaultSettings(userid: string) {
     await setDoc(doc(this.store, COLLECTION, userid), userDataTemplate);
