@@ -3,53 +3,17 @@ import Timer from "../../components/timer";
 import WorkoutComponent from "../../components/routine/workout";
 import { UserDataStore } from "../../services/userdata.service";
 import { useEffect, useState } from "react";
-import { auth } from "../../firebase.config";
+import { storage } from "../../firebase.config";
 import { IWorkout } from "../../services/repos/workoutRepo";
-const exampleWorkout = {
-  _id: "workoutid",
-  date: new Date(),
-  stopwatch: "00:00",
-  complete: false,
-  routine: [
-    {
-      _id: "id1",
-      name: "Pushups",
-      sets: 3,
-      reps: 10,
-      complete: false,
-    },
-    {
-      _id: "id2",
-      name: "Pullups",
-      sets: 3,
-      reps: 10,
-      complete: false,
-    },
-    {
-      _id: "id3",
-      name: "Pushups",
-      sets: 3,
-      reps: 10,
-      complete: false,
-    },
-    {
-      _id: "id4",
-      name: "Pullups",
-      sets: 3,
-      reps: 10,
-      complete: false,
-    },
-  ],
-};
+import { useAuth } from "../providers/auth.provider";
 export default function HomeTab() {
-  const [workout, setWorkout] = useState<IWorkout>(exampleWorkout);
+  const [workout, setWorkout] = useState<IWorkout>();
+  const { user } = useAuth();
+  const datastore = new UserDataStore(storage, user!);
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      console.log(user);
+    datastore.getWorkout().then((data) => {
+      console.log(data);
     });
-    // datastore.getWorkout().then((data) => {
-    //   setWorkout(data);
-    // });
   });
   return (
     <View style={styles.container}>
