@@ -1,6 +1,5 @@
-import { collection, Firestore, setDoc } from "firebase/firestore";
+import { Firestore, setDoc } from "firebase/firestore";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { storage, auth } from "../firebase.config";
 import WorkoutRepo, { IWorkout } from "./repos/workoutRepo";
 import { User } from "firebase/auth";
 interface IUserDataObject {
@@ -11,12 +10,8 @@ const userDataTemplate: Omit<IUserDataObject, "_id"> = {
   settings: {},
 };
 const COLLECTION = "userdata";
-const SUBCOLLECTION = "workout";
 export class UserDataStore {
-  constructor(
-    private store: Firestore,
-    user: User,
-  ) {
+  constructor(private store: Firestore, user: User) {
     let doc_ref = doc(this.store, COLLECTION, user.uid);
     this.workoutRepo = new WorkoutRepo(store, doc_ref);
   }
