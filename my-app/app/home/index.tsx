@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 import { storage } from "../../firebase.config";
 import { IWorkout } from "../../services/repos/workoutRepo";
 import { useAuth } from "../providers/auth.provider";
+import { Button, Card, Icon } from "react-native-paper";
+import { router } from "expo-router";
+import { color } from "../../theme/color_theme";
 export default function HomeTab() {
   const [workout, setWorkout] = useState<IWorkout>();
   const { user } = useAuth();
@@ -15,6 +18,10 @@ export default function HomeTab() {
       console.log(data);
     });
   });
+  function navToCreate(): void {
+    router.push("./create");
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.top_half}>
@@ -24,7 +31,14 @@ export default function HomeTab() {
         {workout ? (
           <WorkoutComponent workout={workout} />
         ) : (
-          <Text> No workout set</Text>
+          <Card style={styles.null_card}>
+            <Card.Title title={"No Routine Set"}></Card.Title>
+            <Card.Content>
+              <Button mode="contained" onPress={navToCreate} buttonColor={color.primary}>
+                Make one <Icon size={18} source={"plus"} color="white"></Icon>
+              </Button>
+            </Card.Content>
+          </Card>
         )}
       </View>
     </View>
@@ -47,5 +61,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "flex-start",
+  },
+  null_card: {
+    width: "100%",
+    flex: 1,
+    alignContent: "center",
+    alignItems: "center",
   },
 });
