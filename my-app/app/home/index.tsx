@@ -1,14 +1,14 @@
-import { View, StyleSheet, Text } from "react-native";
-import Timer from "../../components/timer";
-import WorkoutComponent from "../../components/routine/workout";
-import { UserDataStore } from "../../services/userdata.service";
+import { router } from "expo-router";
 import { useEffect, useState } from "react";
+import { StyleSheet, View } from "react-native";
+import { Button, Card, Icon } from "react-native-paper";
+import WorkoutComponent from "../../components/routine/workout";
+import Timer from "../../components/timer";
 import { storage } from "../../firebase.config";
 import { IWorkout } from "../../services/repos/workoutRepo";
-import { useAuth } from "../providers/auth.provider";
-import { Button, Card, Icon } from "react-native-paper";
-import { router } from "expo-router";
+import { UserDataStore } from "../../services/userdata.service";
 import { color } from "../../theme/color_theme";
+import { useAuth } from "../providers/auth.provider";
 export default function HomeTab() {
   const [workout, setWorkout] = useState<IWorkout>();
   const { user } = useAuth();
