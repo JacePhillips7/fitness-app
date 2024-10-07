@@ -19,7 +19,7 @@ export default function HomeTab() {
     });
   });
   function navToCreate(): void {
-    router.push("./create");
+    router.push("/home/create");
   }
 
   return (
